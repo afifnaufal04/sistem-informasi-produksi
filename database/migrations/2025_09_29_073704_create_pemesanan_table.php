@@ -15,12 +15,16 @@ return new class extends Migration
             $table->id('pemesanan_id');
 
             $table->foreignId('pembeli_id')
-              ->constrained('users')   // referensi ke tabel users
+              ->constrained('pembeli')   // referensi ke tabel pembeli
               ->onDelete('cascade');
             
-            $table->string('no_SPK_pembeli');
+            $table->string('no_SPK_pembeli')->nullable();
             $table->date('tanggal_pemesanan');
-            $table->string('no_SPK_kwas');
+            $table->string('no_SPK_kwas')->nullable();
+            $table->boolean('konfirmasi_marketing')->default(false);
+            $table->boolean('konfirmasi_ppic')->default(false);
+            $table->boolean('konfirmasi_gudang')->default(false);
+            $table->boolean('konfirmasi_finishing')->default(false);
             $table->timestamps();
         });
     }

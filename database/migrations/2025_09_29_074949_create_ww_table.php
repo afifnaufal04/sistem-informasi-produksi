@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('ww', function (Blueprint $table) {
             $table->id('ww_id');
-            $table->integer('jumlah_barang');
-            $table->enum('sub_proses', ['Mentah', '2D', '3D', 'Laminasi', 'Planner', 'Lubangi', 'Amplas']);
+            $table->integer('jumlah_barang')->nullable();
+            $table->enum('sub_proses', ['Mentah', '2D', '3D', 'Laminasi', 'Planner', 'Lubangi', 'Amplas'])->nullable();
             $table->timestamps();
         });
     }

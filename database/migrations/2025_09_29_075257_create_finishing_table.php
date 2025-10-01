@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('finishing', function (Blueprint $table) {
             $table->id('finishing_id');
-            $table->enum('jenis_finishing', ['DIY', 'Superindo', 'Pendopo', 'OOA']);
-            $table->integer('jumlah_barang');
-            $table->enum('sub_proses', ['Sanding Sealer', 'Warna', 'Wax']);
+            $table->integer('jumlah_barang')->nullable();
+            $table->enum('sub_proses', ['Sanding Sealer', 'Warna', 'Wax'])->nullable();
             $table->timestamps();
         });
     }
