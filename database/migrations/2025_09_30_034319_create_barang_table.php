@@ -13,17 +13,24 @@ return new class extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->id('barang_id');
-            $table->foreignId('ww_id')->nullable()
-                    ->constrained('ww')
-                    ->onUpdate('cascade');
 
-            $table->foreignId('finishing_id')->nullable()
-                    ->constrained('finishing')
-                    ->onUpdate('cascade');
+            $table->foreignId('ww_id')
+                    ->references('ww_id')
+                    ->on('ww')
+                    ->onUpdate('cascade')
+                    ->nullable();
 
-            $table->foreignId('packing_id')->nullable()
-                    ->constrained('packing')
-                    ->onUpdate('cascade');
+            $table->foreignId('finishing_id')
+                    ->references('finishing_id')
+                    ->on('finishing')
+                    ->onUpdate('cascade')
+                    ->nullable();
+
+            $table->foreignId('packing_id')
+                    ->references('packing_id')
+                    ->on('packing')
+                    ->onUpdate('cascade')
+                    ->nullable();
 
             $table->string('nama_barang');
             $table->double('harga_barang');

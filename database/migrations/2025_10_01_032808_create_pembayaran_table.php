@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id('pembayaran_id');
-            $table->foreignId('pembelian_bahan_pendukung_id')->constrained('pembelian_bahan_pendukung')->onUpdate('cascade')->nullable();
-            $table->foreignId('pengiriman_id')->constrained('pengiriman')->onUpdate('cascade')->nullable();
+
+            $table->foreignId('pembelian_bahan_pendukung_id')->references('pembelian_bahan_pendukung_id')->on('pembelian_bahan_pendukung')->onUpdate('cascade')->nullable();
+
+            $table->foreignId('pengiriman_id')->references('pengiriman_id')->on('pengiriman')->onUpdate('cascade')->nullable();
+
             $table->date('tanggal_pembayaran');
             $table->string('bukti_pembayaran')->nullable();
             $table->timestamps();

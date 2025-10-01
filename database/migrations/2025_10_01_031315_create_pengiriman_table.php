@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('pengiriman', function (Blueprint $table) {
             $table->id('pengiriman_id');
+
             $table->foreignId('id')->constrained('users');
-            $table->foreignId('pemesanan_barang_id')->constrained('pemesanan_barang')->onUpdate('cascade');
-            $table->foreignId('kendaraan_id')->constrained('kendaraan')->onUpdate('cascade')->nullable();
+
+            $table->foreignId('pemesanan_barang_id')->references('pemesanan_barang_id')->on('pemesanan_barang')->onUpdate('cascade');
+
+            $table->foreignId('kendaraan_id')->references('kendaraan_id')->on('kendaraan')->onUpdate('cascade')->nullable();
+            
             $table->enum('status', ['pending', 'dikirim', 'dalam proses', 'selesai'])->default('pending');
             $table->date('tanggal_pengiriman')->nullable();
             $table->date('tanggal_selesai')->nullable();

@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('bahan_pendukung_barang', function (Blueprint $table) {
             $table->id('bahan_dan_barang_id');
-            $table->foreignId('bahan_pendukung_id')->constrained('bahan_pendukung')->onUpdate('cascade');
-            $table->foreignId('barang_id')->constrained('barang')->onUpdate('cascade');
+
+            $table->foreignId('bahan_pendukung_id')->references('bahan_pendukung_id')->on('bahan_pendukung')->onUpdate('cascade')->nullable();
+
+            $table->foreignId('barang_id')->references('barang_id')->on('barang')->onUpdate('cascade')->nullable();
             $table->timestamps();
         });
     }

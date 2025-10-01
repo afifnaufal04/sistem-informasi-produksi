@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('pemesanan', function (Blueprint $table) {
             $table->id('pemesanan_id');
-
-            $table->foreignId('pembeli_id')
-              ->constrained('pembeli')   // referensi ke tabel pembeli
-              ->onDelete('cascade');
+            
+            $table->foreignId('pembeli_id')->references('pembeli_id')->on('pembeli')->onUpdate('cascade');
             
             $table->string('no_SPK_pembeli')->nullable();
             $table->date('tanggal_pemesanan');
