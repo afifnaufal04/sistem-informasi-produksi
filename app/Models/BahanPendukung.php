@@ -10,10 +10,11 @@ class BahanPendukung extends Model
 {
     use HasFactory, Notifiable;
 
+    protected $table = 'bahan_pendukung';
     protected $primaryKey = 'bahan_pendukung_id';
 
     protected $fillable = [
-        'nama',
-        'stok',
+        'nama_bahan_pendukung',
+        'stok_bahan_pendukung',
     ];
 }

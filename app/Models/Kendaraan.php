@@ -10,6 +10,7 @@ class Kendaraan extends Model
 {
     use HasFactory, Notifiable;
 
+    protected $table = 'kendaraan';
     protected $primaryKey = 'kendaraan_id';
 
     protected $fillable = [
