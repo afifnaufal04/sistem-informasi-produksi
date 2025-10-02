@@ -10,6 +10,7 @@ class Packing extends Model
 {
     use HasFactory, Notifiable;
 
+    protected $table = 'packing';
     protected $primaryKey = 'packing_id';
 
     protected $fillable = [

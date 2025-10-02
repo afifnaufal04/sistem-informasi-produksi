@@ -10,6 +10,7 @@ class Pembeli extends Model
 {
     use HasFactory, Notifiable;
 
+    protected $table = 'pembeli';
     protected $primaryKey = 'pembeli_id';
 
     protected $fillable = [

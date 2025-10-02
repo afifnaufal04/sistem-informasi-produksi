@@ -14,23 +14,16 @@ return new class extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->id('barang_id');
 
-            $table->foreignId('ww_id')
-                    ->references('ww_id')
-                    ->on('ww')
-                    ->onUpdate('cascade')
-                    ->nullable();
+            // PERBAIKAN: Gunakan BIGINT eksplisit agar sesuai dengan tipe data ID
+            $table->unsignedBigInteger('ww_id')->nullable(); 
+            $table->foreign('ww_id')->references('ww_id')->on('ww')->onUpdate('cascade');
 
-            $table->foreignId('finishing_id')
-                    ->references('finishing_id')
-                    ->on('finishing')
-                    ->onUpdate('cascade')
-                    ->nullable();
-
-            $table->foreignId('packing_id')
-                    ->references('packing_id')
-                    ->on('packing')
-                    ->onUpdate('cascade')
-                    ->nullable();
+            $table->unsignedBigInteger('finishing_id')->nullable(); 
+            $table->foreign('finishing_id')->references('finishing_id')->on('finishing')->onUpdate('cascade');
+            
+            $table->unsignedBigInteger('packing_id')->nullable(); 
+            $table->foreign('packing_id')->references('packing_id')->on('packing')->onUpdate('cascade');
+        
 
             $table->string('nama_barang');
             $table->double('harga_barang');

@@ -9,6 +9,7 @@ class WW extends Model
 {
     use HasFactory;
 
+    protected $table = 'ww';
     protected $primaryKey = 'ww_id';
     protected $fillable = [
         'jumlah_barang',

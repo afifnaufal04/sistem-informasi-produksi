@@ -10,6 +10,7 @@ class Pemesanan extends Model
 {
     use HasFactory, Notifiable;
 
+    protected $table = 'pemesanan';
     protected $primaryKey = 'pemesanan_id';
     
     protected $fillable = [

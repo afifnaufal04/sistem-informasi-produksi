@@ -10,6 +10,7 @@ class Finishing extends Model
 {
     use HasFactory, Notifiable;
 
+    protected $table = 'finishing';
     protected $primaryKey = 'finishing_id';
 
     protected $fillable = [
