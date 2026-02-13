@@ -16,5 +16,18 @@ class BahanPendukung extends Model
     protected $fillable = [
         'nama_bahan_pendukung',
         'stok_bahan_pendukung',
+        'harga_bahan_pendukung',
+        'satuan',
+        'catatan',
     ];
+
+    public function bahanPendukungBarang()
+    {
+        return $this->hasMany(BahanPendukungBarang::class, 'bahan_pendukung_id', 'bahan_pendukung_id');
+    }
+
+    public function detailPembelianBahanPendukung()
+    {
+        return $this->hasMany(DetailPembelianBahanPendukung::class, 'bahan_pendukung_id', 'bahan_pendukung_id');
+    }
 }

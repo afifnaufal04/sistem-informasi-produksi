@@ -1,0 +1,21 @@
+{
+  "name": "Kayu KWaS",
+  "short_name": "Kayu KWaS",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#14b502",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/kayuKWaS.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/kayuKWaS.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

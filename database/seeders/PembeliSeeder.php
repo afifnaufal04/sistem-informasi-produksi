@@ -14,10 +14,10 @@ class PembeliSeeder extends Seeder
     public function run(): void
     {
         $pembelis = [
-            ['nama_pembeli' => 'Superindo'],
-            ['nama_pembeli' => 'DIY'],
-            ['nama_pembeli' => 'Pendopo'],
-            ['nama_pembeli' => 'OOA'],
+            ['nama_pembeli' => 'Superindo', 'kode_buyer' => 'SUP'],
+            ['nama_pembeli' => 'DIY', 'kode_buyer' => 'DIY'],
+            ['nama_pembeli' => 'Pendopo', 'kode_buyer' => 'PDP'],
+            ['nama_pembeli' => 'OOA', 'kode_buyer' => 'OOA'],
         ];
         foreach ($pembelis as $pembeli) {
             Pembeli::create($pembeli);

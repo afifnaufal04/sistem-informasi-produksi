@@ -16,13 +16,17 @@ return new class extends Migration
             
             $table->foreignId('pembeli_id')->references('pembeli_id')->on('pembeli')->onUpdate('cascade');
             
-            $table->string('no_SPK_pembeli')->nullable();
+            $table->string('no_PO')->nullable();
             $table->date('tanggal_pemesanan');
             $table->string('no_SPK_kwas')->nullable();
+            $table->date('periode_produksi')->nullable();
+            $table->date('tgl_penerbitan_spk');
+            $table->enum('status_pemesanan', ['diproses', 'selesai'])->default('diproses');
             $table->boolean('konfirmasi_marketing')->default(false);
             $table->boolean('konfirmasi_ppic')->default(false);
             $table->boolean('konfirmasi_gudang')->default(false);
             $table->boolean('konfirmasi_finishing')->default(false);
+            $table->boolean('konfirmasi_keprod')->default(false);
             $table->timestamps();
         });
     }

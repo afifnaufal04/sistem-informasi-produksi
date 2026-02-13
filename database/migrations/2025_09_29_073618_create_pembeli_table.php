@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pembeli', function (Blueprint $table) {
             $table->id('pembeli_id');
             $table->string('nama_pembeli');
+            $table->string('kode_buyer');
             $table->timestamps();
         });
     }

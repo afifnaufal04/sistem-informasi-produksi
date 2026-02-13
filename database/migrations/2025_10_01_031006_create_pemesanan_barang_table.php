@@ -16,9 +16,10 @@ return new class extends Migration
 
             $table->foreignId('pemesanan_id')->references('pemesanan_id')->on('pemesanan')->onUpdate('cascade')->nullable();
 
-            $table->foreignId('bahan_dan_barang_id')->references('bahan_dan_barang_id')->on('bahan_pendukung_barang')->onUpdate('cascade')->nullable();
+            $table->foreignId('barang_id')->references('barang_id')->on('barang')->onUpdate('cascade')->nullable();
             
             $table->enum('status', ['pending', 'diproses', 'selesai'])->default('pending');
+            $table->integer('jumlah_pemesanan');
             $table->timestamps();
         });
     }

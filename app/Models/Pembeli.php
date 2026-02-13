@@ -15,6 +15,12 @@ class Pembeli extends Model
 
     protected $fillable = [
         'nama_pembeli',
+        'kode_buyer',
     ];
+
+    public function pemesanan()
+    {
+        return $this->hasMany(Pemesanan::class, 'pembeli_id', 'pembeli_id');
+    }
 
 }

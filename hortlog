@@ -1,0 +1,175 @@
+Aldobrass (28):
+      first commit
+      tambahin model bagian usernya belum lengkap
+      bagian migrationnya belum update
+      update model sama database
+      untuk migration database sementara sudah selesai
+      migration database sementara fix
+      Merge pull request #1 from Aldobrass/Naufal
+      update kodingan masalah di login ini untuk dashboard admin sudah masuk
+      update untuk pemesanan sudah selesai
+      update hanya untuk tambah sama store stok sama front end dari ivan
+      untuk stok produk ppic sudah seharusnya
+      Membuat progress produksi dr Rico, masih ada PR di front end :  buat progress bar, rapihin view, sama dropdown list nya belum sesuai urutan per main proses
+      rapiin bagian model serta migration serta erd
+      finishing dan packing lupa kehapus
+      edit bagian yang bahan pendukung create sama tambahin filter tahun untuk pembelian baha pendukung
+      pelacakan progres terbaru
+      Tambahan error handling gudang dan pengiriman serta beberapa perbaikan bug
+      habis merge
+      habis merge
+      update file
+      Pembuatan pengambilan, fix bug, tambahan pelengkap untuk table pengiriman keprod
+      update file
+      update pengiriman internal
+      penambahan error handling serta pemindahan dari progres produksi ke stok gudang beserta update terakhir
+      update bug untuk pelacakan progres produksi sama tambahan untuk keperluan kardus serta history pemindahan barang
+      benerin bug di gudang untuk detail bahan pendukung
+      update bug
+      update codingan
+
+AndiZirahitaf (3):
+      search
+      Merge pull request #3 from Aldobrass/Yosua
+      Merge pull request #4 from Aldobrass/daniel
+
+Daniel (7):
+      ngrapiin ui progress produksi sama history pemindahan
+      ngarpiin card dashboard ppic, kebutuhan kardus
+      update ui reset password
+      desimal update di dimensi barang
+      ganti tanggal pengiriman ke tanggal order
+      mau push
+      tambah catatan di daftar bahan pendukung di ppic
+
+Daniel Satria Darmawan (1):
+      Merge pull request #5 from Aldobrass/daniel
+
+Yosua (8):
+      frist commit
+      Merge branch 'VanVan' of https://github.com/Aldobrass/ProjekProduksi into Yosua
+      Merge branch 'Albert' of https://github.com/Aldobrass/ProjekProduksi into Yosua
+      fixing van
+      Merge branch 'Naufal' of https://github.com/Aldobrass/ProjekProduksi into Yosua
+      Merge branch 'Naufal' of https://github.com/Aldobrass/ProjekProduksi into Yosua
+      Merge branch 'Naufal' of https://github.com/Aldobrass/ProjekProduksi into Yosua
+      ganti no_SPK_pembeli ke no_PO
+
+afifnaufal04 (55):
+      Create package-lock.json
+      Seeder
+      Seeder User,Bahan Pendukung, Kendaraan, Barang, Pembeli
+      Merge branch 'Albert' of https://github.com/Aldobrass/ProjekProduksi into Naufal
+      commit
+      supir pengantaran barang, supplier detail produksi
+      QCHasil dan Pengambilan di role supplier, supir, qc, dan keprod
+      comit
+      pembayaran
+      Merge branch 'Albert' of https://github.com/Aldobrass/ProjekProduksi into Naufal
+      Merge branch 'Albert' of https://github.com/Aldobrass/ProjekProduksi into Naufal
+      qc produksi
+      pemindahan stok
+      Packing dan Pemindahan barang ke stok
+      dashboard setiap role
+      Merge branch 'Albert' of https://github.com/Aldobrass/ProjekProduksi into Naufal
+      Update PemesananBarang.php
+      Update SupplierProduksiController.php
+      bahan pendukung packing
+      perbaiki admin
+      Merge branch 'Albert' of https://github.com/Aldobrass/ProjekProduksi into Naufal
+      status untuk pemesanan, perbaikan tenary di packing
+      Update pengiriman
+      update status di role gudang
+      update opsi supplier di pengiriman
+      reset password
+      Merge branch 'VanVan' of https://github.com/Aldobrass/ProjekProduksi into Naufal
+      update
+      update
+      Merge branch 'Naufal' of https://github.com/Aldobrass/ProjekProduksi into Naufal
+      Merge branch 'Albert' of https://github.com/Aldobrass/ProjekProduksi into Naufal
+      Merge branch 'VanVan' of https://github.com/Aldobrass/ProjekProduksi into Naufal
+      Update status pengiriman untuk pengiriman internal
+      update
+      update
+      Update pelacakan_progres.blade.php
+      Merge branch 'VanVan' of https://github.com/Aldobrass/ProjekProduksi into Naufal
+      update
+      Merge branch 'VanVan' of https://github.com/Aldobrass/ProjekProduksi into Naufal
+      Update barangmasuk.blade.php
+      Merge branch 'VanVan' of https://github.com/Aldobrass/ProjekProduksi into Naufal
+      update
+      update
+      Merge branch 'VanVan' of https://github.com/Aldobrass/ProjekProduksi into Naufal
+      update
+      update
+      update
+      update
+      update
+      update
+      update
+      update
+      update
+      update
+      update
+
+ivandi15 (56):
+      upadate tampilan
+      Merge branch 'Naufal' of https://github.com/Aldobrass/ProjekProduksi into VanVan
+      update tampilan gudang, layout, dan qc
+      update
+      update
+      update
+      update ppic, keprod, gudang,purchasing, dan qc
+      update supir, qc, keprod
+      update ppic, marketing, packing, layout, dan gudang
+      update ppic
+      update ppic, purchasing, supplier
+      update detail pemesan PDF. marketing, ppic, qc, gudang
+      update dashboard semua role
+      update purchasing
+      update tampilan
+      update tampilan show pemesanan
+      update tampilan daftar barang
+      update tampilan
+      update
+      update gudang, qc, supir.
+      Merge branch 'Naufal' of https://github.com/Aldobrass/ProjekProduksi into VanVan
+      update
+      Merge branch 'Naufal' of https://github.com/Aldobrass/ProjekProduksi into VanVan
+      update packing
+      update
+      update
+      update bagian packing di ppic dan packing
+      habis pull
+      Merge branch 'Naufal' of https://github.com/Aldobrass/ProjekProduksi into VanVan
+      update
+      update showpemesanan
+      update
+      update
+      update supir
+      update keprod pengiriman
+      update status supplier
+      update status supplier
+      update status supplier
+      frist commit
+      frist commit
+      frist commit
+      Merge branch 'Naufal' of https://github.com/Aldobrass/ProjekProduksi into VanVan
+      frist commit
+      frist commit
+      Merge branch 'Naufal' of https://github.com/Aldobrass/ProjekProduksi into VanVan
+      frist commit
+      frist commit
+      frist commit
+      Merge branch 'Naufal' of https://github.com/Aldobrass/ProjekProduksi into VanVan
+      update detail barang di marketing
+      update detail barang di ppic
+      update detail barang di ppic
+      update dashboard keprod
+      update dashboard
+      kesalahan PO
+      kesalahan PO
+
+vannaja (1):
+      Add files via upload
+

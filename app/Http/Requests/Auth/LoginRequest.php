@@ -21,45 +21,65 @@ class LoginRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'username' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
 
     /**
      * Attempt to authenticate the request's credentials.
-     *
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function authenticate(): void
     {
+        // 1. Cek dulu apakah user SUDAH terkunci dari percobaan sebelumnya
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+        // 2. Coba Login
+        if (! Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
+            
+            // 3. Jika GAGAL, catat kegagalan (denda 30 detik)
+            RateLimiter::hit($this->throttleKey(), 30);
 
+            // --- LOGIKA BARU DI SINI ---
+            // Cek langsung: Apakah ini kegagalan ke-3?
+            if (RateLimiter::tooManyAttempts($this->throttleKey(), 3)) {
+                
+                // Jika ya, langsung picu event Lockout
+                event(new Lockout($this));
+
+                // Ambil sisa waktu (seharusnya 30 detik karena baru saja gagal)
+                $seconds = RateLimiter::availableIn($this->throttleKey());
+
+                // Lempar error "Terlalu banyak percobaan" SEKARANG JUGA
+                throw ValidationException::withMessages([
+                    'username' => trans('auth.throttle', [
+                        'seconds' => $seconds,
+                        'minutes' => ceil($seconds / 60),
+                    ]),
+                ]);
+            }
+            // ---------------------------
+
+            // Jika belum ke-3, lempar error password salah biasa
             throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
+                'username' => 'Maaf, Username atau Password Anda salah!',
             ]);
         }
 
+        // Jika berhasil login, hapus catatan kegagalan
         RateLimiter::clear($this->throttleKey());
     }
 
     /**
      * Ensure the login request is not rate limited.
-     *
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function ensureIsNotRateLimited(): void
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 3)) {
             return;
         }
 
@@ -68,7 +88,7 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
+            'username' => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -80,6 +100,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->input('username')).'|'.$this->ip());
     }
 }

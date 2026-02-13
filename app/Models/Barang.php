@@ -23,6 +23,26 @@ class Barang extends Model
         'lebar',
         'tinggi',
         'jumlah_stok_acc',
-        'jumlah_pemesanan',
     ];
+
+    public function bahanPendukungBarang()
+    {
+        return $this->hasMany(BahanPendukungBarang::class, 'barang_id', 'barang_id');
+    }
+
+    public function gudangQcGagal()
+    {
+        return $this->hasMany(GudangQcGagal::class, 'barang_id');
+    }
+
+
+    public function produksi()
+    {
+        return $this->hasMany(Produksi::class, 'barang_id', 'barang_id');
+    }
+
+    public function pemesananBarang()
+    {
+        return $this->hasMany(PemesananBarang::class, 'barang_id', 'barang_id');
+    }
 }

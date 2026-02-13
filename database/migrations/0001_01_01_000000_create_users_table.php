@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
-            $table->enum('role', ['marketing', 'admin', 'ppic', 'keprod', 'qc', 'purchasing', 'gudang', 'packing', 'direktur', 'supplier', 'supir']);
+            $table->enum('role', ['admin', 'marketing', 'ppic', 'keprod', 'qc', 'purchasing', 'gudang', 'packing', 'direktur', 'supplier', 'supir']);
             $table->enum('work_status', ['dalam pengerjaan', 'tersedia'])->nullable();
+            $table->enum('tipe_supplier', ['internal', 'eksternal'])->nullable();
+            $table->unsignedInteger('waktu_antar')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             KendaraanSeeder::class,
             BahanPendukungSeeder::class,
             BarangSeeder::class,
+            proses_seeder::class,
+            subproses_seeder::class,  
+            BahanPendukungBarangSeeder::class,                   
         ]);
     }
 }

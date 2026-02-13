@@ -18,24 +18,47 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): Response
+
+    public function create()
+    {
+        return view('admin.register');
+    }
+
+    public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            'role' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'confirmed', Rules\Password::min(3)],
+            
+            // Validasi untuk supplier
+            'tipe_supplier' => ['required_if:role,supplier', 'nullable', 'in:internal,eksternal'],
+            'waktu_antar' => [
+                'required_if:tipe_supplier,eksternal', 
+                'nullable', 
+                'integer', 
+                'min:1'
+            ],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->string('password')),
+            'username' => $request->username,
+            'role' => $request->role,
+            'password' => Hash::make($request->password),
+            'work_status' => $request->role === 'supplier' ? 'tersedia' : null,
+            'tipe_supplier' => $request->role === 'supplier' ? $request->tipe_supplier : null,
+            'waktu_antar' => ($request->role === 'supplier' && $request->tipe_supplier === 'eksternal') 
+                ? $request->waktu_antar 
+                : null,
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return response()->noContent();
+        return redirect()->route('admin.register')
+            ->with('success', 'User baru berhasil ditambahkan.');
     }
 }

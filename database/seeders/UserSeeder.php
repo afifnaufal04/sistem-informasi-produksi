@@ -20,7 +20,17 @@ class UserSeeder extends Seeder
                 'email' => 'supir@example.com',
                 'password' => Hash::make('111'),
                 'role' => 'supir',
-                'work_status' => 'Tersedia'
+                'work_status' => 'Tersedia',
+                'waktu_antar' => null
+            ]);
+            User::create([
+                'username' => 'sambo',
+                'name' => 'Sambo',
+                'email' => 'sambo@example.com',
+                'password' => Hash::make('111'),
+                'role' => 'supir',
+                'work_status' => 'Tersedia',
+                'waktu_antar' => null
             ]);
 
             User::create([
@@ -29,7 +39,8 @@ class UserSeeder extends Seeder
                 'email' => 'gudang@example.com',
                 'password' => Hash::make('111'),
                 'role' => 'gudang',
-                'work_status' => 'Tersedia'
+                'work_status' => 'Tersedia',
+                'waktu_antar' => null
             ]);
 
             User::create([
@@ -38,7 +49,8 @@ class UserSeeder extends Seeder
                 'email' => 'ppic@example.com',
                 'password' => Hash::make('111'),
                 'role' => 'ppic',
-                'work_status' => 'Tersedia'
+                'work_status' => 'Tersedia',
+                'waktu_antar' => null
             ]);
 
             User::create([
@@ -47,7 +59,17 @@ class UserSeeder extends Seeder
                 'email' => 'qc@example.com',
                 'password' => Hash::make('111'),
                 'role' => 'qc',
-                'work_status' => 'Tersedia'
+                'work_status' => 'Tersedia',
+                'waktu_antar' => null
+            ]);
+            User::create([
+                'username' => 'agus',
+                'name' => 'Agus',
+                'email' => 'agus@example.com',
+                'password' => Hash::make('111'),
+                'role' => 'qc',
+                'work_status' => 'Tersedia',
+                'waktu_antar' => null
             ]);
 
             User::create([
@@ -56,7 +78,8 @@ class UserSeeder extends Seeder
                 'email' => 'keprod@example.com',
                 'password' => Hash::make('111'),
                 'role' => 'keprod',
-                'work_status' => 'Tersedia'
+                'work_status' => 'Tersedia',
+                'waktu_antar' => null
             ]);
 
             User::create([
@@ -65,7 +88,8 @@ class UserSeeder extends Seeder
                 'email' => 'direktur@example.com',
                 'password' => Hash::make('111'),
                 'role' => 'direktur',
-                'work_status' => 'Tersedia'
+                'work_status' => 'Tersedia',
+                'waktu_antar' => null
             ]);
 
             User::create([
@@ -74,7 +98,8 @@ class UserSeeder extends Seeder
                 'email' => 'admin@example.com',
                 'password' => Hash::make('111'),
                 'role' => 'admin',
-                'work_status' => 'Tersedia'
+                'work_status' => 'Tersedia',
+                'waktu_antar' => null
             ]);
 
             User::create([
@@ -83,7 +108,8 @@ class UserSeeder extends Seeder
                 'email' => 'marketing@example.com',
                 'password' => Hash::make('111'),
                 'role' => 'marketing',
-                'work_status' => 'Tersedia'
+                'work_status' => 'Tersedia',
+                'waktu_antar' => null
             ]);
 
             User::create([
@@ -92,7 +118,8 @@ class UserSeeder extends Seeder
                 'email' => 'purchasing@example.com',
                 'password' => Hash::make('111'),
                 'role' => 'purchasing',
-                'work_status' => 'Tersedia'
+                'work_status' => 'Tersedia',
+                'waktu_antar' => null
             ]);
 
             User::create([
@@ -101,7 +128,30 @@ class UserSeeder extends Seeder
                 'email' => 'supplier@example.com',
                 'password' => Hash::make('111'),
                 'role' => 'supplier',
-                'work_status' => 'Tersedia'
+                'work_status' => 'Tersedia',
+                'tipe_supplier' => 'eksternal',
+                'waktu_antar' => 60
+            ]);
+            User::create([
+                'username' => 'yoga',
+                'name' => 'Yoga',
+                'email' => 'yoga@example.com',
+                'password' => Hash::make('111'),
+                'role' => 'supplier',
+                'work_status' => 'Tersedia',
+                'tipe_supplier' => 'eksternal',
+                'waktu_antar' => 60
+            ]);
+
+            User::create([
+                'username' => 'supplier_internal',
+                'name' => 'Supplier Internal',
+                'email' => 'supplier_internal@example.com',
+                'password' => Hash::make('111'),
+                'role' => 'supplier',
+                'work_status' => 'Tersedia',
+                'tipe_supplier' => 'internal',
+                'waktu_antar' => 60
             ]);
 
             User::create([
@@ -110,7 +160,8 @@ class UserSeeder extends Seeder
                 'email' => 'packing@example.com',
                 'password' => Hash::make('111'),
                 'role' => 'packing',
-                'work_status' => 'Tersedia'
+                'work_status' => 'Tersedia',
+                'waktu_antar' => null
             ]);
     }
 }
