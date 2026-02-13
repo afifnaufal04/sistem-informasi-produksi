@@ -37,7 +37,7 @@ use App\Models\Barang;
 //     }
 // }
 
-//BARU YA PUNYA RICO
+
 class PemesananBarang extends Model
 {
     use HasFactory;
@@ -50,9 +50,6 @@ class PemesananBarang extends Model
         'barang_id',
         'status',
         'jumlah_pemesanan',
-        'jumlah_stok_acc',
-        'jumlah_qc_gagal',
-        'jumlah_selesai_packing',
     ];
 
     public function pemesanan()

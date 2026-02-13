@@ -31,6 +31,7 @@
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
             @foreach ($pemesanans as $pemesanan)
                 <div class="group bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-lg hover:shadow-blue-900/5 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden relative">
+                    
                     <!-- Card Header -->
                     <div class="p-4 pb-2 relative z-10">
                         <div class="flex justify-between items-start">
@@ -40,33 +41,35 @@
                                         #{{ $pemesanan->pemesanan_id }}
                                     </span>
                                     <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
-                                        {{ \Carbon\Carbon::parse($pemesanan->tanggal_pemesanan)->locale('id') ->translatedFormat('d F Y') }}
+                                        {{ \Carbon\Carbon::parse($pemesanan->tanggal_pemesanan)->locale('id')->translatedFormat('d F Y') }}
                                     </span>
                                 </div>
                                 <h3 class="text-2xl font-extrabold text-gray-900 group-hover:text-blue-600 transition-colors">
                                     {{ $pemesanan->pembeli->nama_pembeli ?? 'Mitra Eksternal' }}
                                 </h3>
                                 <div class="flex items-center text-sm font-semibold text-gray-500 bg-gray-50 self-start px-3 py-1 rounded-lg border border-gray-100">
-                                    <svg class="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                    <svg class="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
                                     SPK: {{ $pemesanan->no_PO }}
                                 </div>
                             </div>
 
                             <div class="shrink-0">
                                 @if($pemesanan->status === 'Selesai')
-                                    <div class="flex flex-col items-end">
-                                        <span class="inline-flex items-center px-5 py-2 rounded-2xl text-[11px] font-black uppercase tracking-widest bg-green-500 text-white shadow-lg shadow-green-200">
-                                            <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                                            {{ $pemesanan->status }}
-                                        </span>
-                                    </div>
+                                    <span class="inline-flex items-center px-5 py-2 rounded-2xl text-[11px] font-black uppercase tracking-widest bg-green-500 text-white shadow-lg shadow-green-200">
+                                        <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        {{ $pemesanan->status }}
+                                    </span>
                                 @else
-                                    <div class="flex flex-col items-end">
-                                        <span class="inline-flex items-center px-5 py-2 rounded-2xl text-[11px] font-black uppercase tracking-widest bg-amber-400 text-white shadow-lg shadow-amber-200">
-                                            <svg class="w-3.5 h-3.5 mr-1.5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                                            Diproses
-                                        </span>
-                                    </div>
+                                    <span class="inline-flex items-center px-5 py-2 rounded-2xl text-[11px] font-black uppercase tracking-widest bg-amber-400 text-white shadow-lg shadow-amber-200">
+                                        <svg class="w-3.5 h-3.5 mr-1.5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                        </svg>
+                                        Diproses
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -78,16 +81,9 @@
                             <h4 class="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">Daftar Inventaris & Progres</h4>
                             <div class="h-px bg-gray-100 flex-grow ml-4"></div>
                         </div>
-                        
+
                         <div class="space-y-4">
                             @forelse ($pemesanan->pemesananBarang as $pb)
-                                @php
-                                    $packingSelesai = $pb->packing->sum('jumlah_packing');
-                                    $progressBarang = $pb->jumlah_pemesanan > 0
-                                        ? round(($packingSelesai / $pb->jumlah_pemesanan) * 100)
-                                        : 0;
-                                @endphp
-                                
                                 <div class="relative group/item bg-white rounded-lg p-3 border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-100 transition-all duration-200">
 
                                     <!-- Item Info -->
@@ -103,14 +99,14 @@
                                                     {{ $pb->barang->nama_barang ?? 'Unknown SKU' }}
                                                 </span>
                                                 <span class="text-[11px] font-bold text-gray-400 italic">
-                                                    Progress: {{ $progressBarang }}%
+                                                    Progress: {{ $pb->progress_barang }}%
                                                 </span>
                                             </div>
                                         </div>
 
                                         <div class="text-right">
                                             <div class="text-lg font-black text-gray-900 leading-none">
-                                                {{ $packingSelesai }}
+                                                {{ $pb->packing_selesai }}
                                             </div>
                                             <div class="text-[10px] font-bold text-gray-400 uppercase mt-1">
                                                 / {{ $pb->jumlah_pemesanan }} Unit
@@ -120,7 +116,8 @@
 
                                     <!-- Progress Bar -->
                                     <div class="relative w-full bg-gray-100 h-4 rounded-full overflow-hidden mb-3 p-1 border border-gray-50 shadow-inner">
-                                        <div class="h-full bg-emerald-600 rounded-full transition-all duration-1000 shadow-[0_0_14px_rgba(16,185,129,0.8)]" style="width: {{ min(100, $progressBarang) }}%">
+                                        <div class="h-full bg-emerald-600 rounded-full transition-all duration-1000 shadow-[0_0_14px_rgba(16,185,129,0.8)]" 
+                                             style="width: {{ $pb->progress_barang }}%">
                                             <div class="absolute inset-0 bg-white/15 animate-pulse"></div>
                                         </div>
                                     </div>
@@ -141,13 +138,12 @@
                                                         <div class="flex items-center text-gray-700">
                                                             <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>
                                                             <span class="font-bold">
-                                                                {{ $pack->jumlah_packing }}
+                                                                {{ $pack->jumlah_packing }} 
                                                                 <span class="font-medium text-gray-400">
                                                                     Unit {{ $pb->barang->nama_barang ?? 'Unknown SKU' }} selesai
                                                                 </span>
                                                             </span>
                                                         </div>
-
                                                         <span class="text-[10px] font-bold text-gray-400 italic">
                                                             {{ \Carbon\Carbon::parse($pack->created_at)->locale('id')->diffForHumans() }}
                                                         </span>

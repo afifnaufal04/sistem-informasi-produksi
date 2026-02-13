@@ -308,45 +308,45 @@ class ProgresProduksiController extends Controller
     }
 
 
-    // Pelacakan Proses produksi untuk pemenuhan pemesanan barang
     public function ProsesPenyelesaianPemesanan()
-    {
-        // Ambil semua pemesanan dengan relasi nested
-        $pemesanans = Pemesanan::with([
-            'pembeli',
-            'pemesananBarang.barang',
-            'pemesananBarang.packing' => function ($q) {
-                $q->where('status_packing', 'Selesai');
+{
+    // Ambil data pemesanan beserta barang dan total selesai packing
+    $pemesanans = Pemesanan::with([
+        'pembeli',
+        'pemesananBarang.barang',
+        'pemesananBarang' => function ($query) {
+            $query->withSum('packing', 'jumlah_selesai_packing');
+        }
+    ])->get();
+
+    // Loop setiap pemesanan
+    foreach ($pemesanans as $pemesanan) {
+
+        // Loop setiap barang dalam pemesanan
+        foreach ($pemesanan->pemesananBarang as $pb) {
+
+            // Total real selesai packing
+            $packingSelesai = $pb->packing_sum_jumlah_selesai_packing ?? 0;
+
+            // Simpan untuk ditampilkan di view
+            $pb->packing_selesai = $packingSelesai;
+
+            // Hitung progress per barang
+            if ($pb->jumlah_pemesanan > 0) {
+                $progressBarang = ($packingSelesai / $pb->jumlah_pemesanan) * 100;
+                $pb->progress_barang = min(100, round($progressBarang));
+            } else {
+                $pb->progress_barang = 0;
             }
-        ])->get();
 
-        // Hitung progress untuk setiap pemesanan
-        $pemesanans->each(function ($pemesanan) {
-            // Total semua jumlah_pemesanan dari pemesanan_barang
-            $totalPemesanan = $pemesanan->pemesananBarang->sum('jumlah_pemesanan');
-            
-            // Total packing yang selesai dari semua pemesanan_barang
-            $totalPackingSelesai = $pemesanan->pemesananBarang->sum(function ($pb) {
-                return $pb->packing->sum('jumlah_packing');
-            });
-
-            // Hitung progress
-            $progress = $totalPemesanan > 0
-                ? round(($totalPackingSelesai / $totalPemesanan) * 100)
-                : 0;
-
-            // Tambahkan atribut untuk view
-            $pemesanan->total_pemesanan = $totalPemesanan;
-            $pemesanan->total_packing_selesai = $totalPackingSelesai;
-            $pemesanan->progress = min(100, $progress);
-            $pemesanan->status = $progress >= 100 ? 'Selesai' : 'Proses';
-        });
-
-        return view(
-            'ppic.progresPenyelesaianPemesanan',
-            compact('pemesanans')
-        );
+        }
     }
+
+    return view('ppic.progresPenyelesaianPemesanan', compact('pemesanans'));
+}
+
+
+
 
     // Menu untuk keprod history pemindahan barang
     public function historyPemindahan(Request $request)
