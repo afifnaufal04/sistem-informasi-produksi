@@ -218,7 +218,7 @@ class PemesananController extends Controller
 
         // pilihan: download atau stream; di sini kita download
         return $pdf->download($filename);
-        // atau: return $pdf->stream($filename);
+        //atau: return $pdf->stream($filename);
     }
 
     public function konfirmasi($id, $bagian)
