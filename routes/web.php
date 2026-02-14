@@ -429,7 +429,6 @@ Route::prefix('packing')->middleware(['auth', 'role:packing'])->group(function (
     Route::put('/daftarpacking/update-status/{id}', [PackingController::class, 'updateStatus'])->name('packing.packing.updateStatus');
     Route::delete('/daftarpacking/delete/{id}', [PackingController::class, 'delete'])->name('packing.packing.delete');
 });
-
 //==========================================================================================
 
 require __DIR__.'/auth.php';
