@@ -190,17 +190,27 @@ class PemesananController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        $pemesanan = Pemesanan::findOrFail($id);
+{
+    $pemesanan = Pemesanan::findOrFail($id);
 
-        // Hapus relasi pemesanan_barang dulu
-        PemesananBarang::where('pemesanan_id', $pemesanan->pemesanan_id)->delete();
+    // Ambil semua pemesanan_barang terkait beserta packing-nya
+    $pemesananBarangs = PemesananBarang::with('packing')
+        ->where('pemesanan_id', $pemesanan->pemesanan_id)
+        ->get();
 
-        // Baru hapus pemesanan
-        $pemesanan->delete();
+    // Loop setiap pemesanan_barang, hapus packing-nya dulu
+    $pemesananBarangs->each(function ($pb) {
+        $pb->packing()->delete();
+    });
 
-        return redirect()->route('pemesanan.index')->with('success', 'PO berhasil dihapus.');
-    }
+    // Hapus semua pemesanan_barang
+    PemesananBarang::where('pemesanan_id', $pemesanan->pemesanan_id)->delete();
+
+    // Hapus pemesanan
+    $pemesanan->delete();
+
+    return redirect()->route('marketing.pemesanan.index')->with('success', 'PO berhasil dihapus.');
+}
 
     public function downloadSpk($id)
     {
