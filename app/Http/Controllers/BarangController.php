@@ -123,7 +123,7 @@ class BarangController extends Controller
         
         // Ambil barang dengan relasi bahanPendukungBarang
         // bahanPendukungBarang -> subProses
-        // bahanPendukungBarang -> bahanPendukungDetail
+        // bahanPendukungBarang -> bahanPendukungBarang
         $barang = Barang::with(['bahanPendukungBarang.subProses', 'bahanPendukungBarang'])
                         ->findOrFail($id);
         

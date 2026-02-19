@@ -32,7 +32,7 @@ class PackingController extends Controller
         try {
             $packing = Packing::findOrFail($id);
 
-            // ❗ Validasi agar tidak melebihi jumlah packing
+            // Validasi agar tidak melebihi jumlah packing
             if ($request->jumlah_selesai_packing > $packing->jumlah_packing) {
                 return back()->withErrors([
                     'error' => 'Jumlah selesai packing melebihi jumlah packing!'
@@ -42,7 +42,7 @@ class PackingController extends Controller
             // Update jumlah selesai packing
             $packing->jumlah_selesai_packing = $request->jumlah_selesai_packing;
 
-            // Jika sudah penuh → otomatis selesai
+            // Jika sudah penuh otomatis selesai
             if ($packing->jumlah_selesai_packing == $packing->jumlah_packing) {
                 $packing->status_packing = 'Selesai';
             } else {

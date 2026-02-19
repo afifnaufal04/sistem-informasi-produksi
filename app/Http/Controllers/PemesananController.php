@@ -21,7 +21,16 @@ class PemesananController extends Controller
     /**
      * Display a listing of the resource.
      */
-    
+    // buat fungsi untuk pemesanan yang tidak memiliki pemesanan_barang langsung dihapus
+
+    public function __construct()
+    {
+        $pemesananTanpaBarang = Pemesanan::doesntHave('pemesananBarang')->get();
+        foreach ($pemesananTanpaBarang as $pemesanan) {
+            $pemesanan->delete();
+        }
+    }
+
     public function index(Request $request)
     {
         $search = $request->input('search');
@@ -97,8 +106,8 @@ class PemesananController extends Controller
             'periode_produksi' => 'nullable|string',
             'barang_id' => 'required|array',
             'barang_id.*' => 'exists:barang,barang_id',
-            'jumlah_pemesanan' => 'required|array', // Tambahkan validasi
-            'jumlah_pemesanan.*' => 'required|integer|min:1', // Validasi setiap item
+            'jumlah_pemesanan' => 'required|array', 
+            'jumlah_pemesanan.*' => 'required|integer|min:1',
         ]);
 
         // Buat data pemesanan utama

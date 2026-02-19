@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('pemesanan_barang', function (Blueprint $table) {
             $table->id('pemesanan_barang_id');
 
-            $table->foreignId('pemesanan_id')->references('pemesanan_id')->on('pemesanan')->onUpdate('cascade')->nullable();
+            $table->foreignId('pemesanan_id')->references('pemesanan_id')->on('pemesanan')->onDelete('cascade')->onUpdate('cascade')->nullable();
 
-            $table->foreignId('barang_id')->references('barang_id')->on('barang')->onUpdate('cascade')->nullable();
+            $table->foreignId('barang_id')->references('barang_id')->on('barang')->onDelete('cascade')->onUpdate('cascade')->nullable();
             
             $table->enum('status', ['pending', 'diproses', 'selesai'])->default('pending');
             $table->integer('jumlah_pemesanan');
