@@ -45,6 +45,7 @@ class PemesananController extends Controller
             ->when($status, function($query, $status) {
                 return $query->where('status_pemesanan', $status);
             })
+            ->orderBy('created_at', 'desc')
             ->get();
 
         $role = Auth::user()->role;

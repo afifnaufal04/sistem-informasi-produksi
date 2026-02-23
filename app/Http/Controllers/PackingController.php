@@ -16,7 +16,7 @@ class PackingController extends Controller
     {
         $role = Auth::user()->role;
         $packings = Packing::with('pemesananBarang.pemesanan','pemesananBarang.pemesanan.pembeli', 'pemesananBarang.barang')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('jumlah_selesai_packing', 'desc')
             ->where('status_packing', '!=', 'Selesai')
             ->get();
         return view($role.'.daftarpacking', compact('packings'));
